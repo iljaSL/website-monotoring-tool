@@ -4,8 +4,8 @@
 	"description": "homework assigned by f-secure",
 	"main": "index.js",
 	"scripts": {
-		"start": "node index.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "cross-env NODE_ENV=production node index.js",
+		"test": "cross-env NODE_ENV=test"
 	},
 	"author": "ismelich",
 	"license": "ISC",
@@ -13,5 +13,8 @@
 		"express": "^4.17.1",
 		"get-server-response-time": "^1.1.5",
 		"needle": "^2.5.2"
+	},
+	"devDependencies": {
+		"cross-env": "^7.0.2"
 	}
 }
