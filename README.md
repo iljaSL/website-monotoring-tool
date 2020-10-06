@@ -38,8 +38,10 @@ npm start
 ```
 ## Improvements
 
-In this sections, I list the improvements I had in mind for this program, but could not finish within 2 days.
+In this sections, I list the improvements I had in mind for this program, but could not finish within the 2 day limit.
 
 * Creating a server, in order to use it inside a web browser.
 * Creating a GUI inside the web browser.
-*
+* Creating a middleware for the display of error messages.
+* Separating the writing of the errors in a specific logger file.
+* Creating a automated tester with the help of jest.
