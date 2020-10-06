@@ -1,6 +1,6 @@
 const Monitor = require('./utils/monitoring');
 const config = require('./config/config');
-const test = require('./test/websitesWithDifferentStatusCodes');
+// const test = require('./test/websitesWithDifferentStatusCodes');
 
 const checkIfValidUrl = /^((http|https):\/\/)/;
 const monitorSession = [];

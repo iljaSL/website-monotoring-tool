@@ -1,8 +1,6 @@
 const needle = require('needle');
 const fs = require('fs');
-const getServerResponseTime = require('get-server-response-time');
 const config = require('../config/config');
-const http = require('http');
 
 function Monitor(options) {
 	this.website = '';
@@ -54,17 +52,18 @@ Monitor.prototype = {
 		this.printOutput(status, message);
 	},
 
-	printOutput: async function (status, message) {
-		const responseTime = await getServerResponseTime(this.website, {
-			timeout: 10000,
-			responseInCaseError: true,
-		}).catch((error) => console.error('ERROR', error));
-		const that = this;
+	printOutput: function (status, message) {
+		const start = new Date();
 
 		let time = new Date(Date.now()).toString();
-		let output = `\nResponse Time:${responseTime} ms \nWebsite: ${that.website} \nTime: ${time} \nStatus: ${status} \nMessage: ${message} \n`;
+		let output = `Website: ${this.website}\nTime: ${time}\nStatus: ${status}\nMessage: ${message}`;
 
-		console.log(output, '\n-----');
+		needle.get(this.website, () => {
+			let responseTime = new Date() - start;
+			console.log('Response Time:', responseTime, 'ms \n------\n');
+		});
+
+		console.log(output);
 		this.writeLog(output);
 	},
 
