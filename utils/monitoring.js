@@ -55,16 +55,14 @@ Monitor.prototype = {
 	printOutput: function (status, message) {
 		const start = new Date();
 
-		let time = new Date(Date.now()).toString();
-		let output = `Website: ${this.website}\nTime: ${time}\nStatus: ${status}\nMessage: ${message}`;
-
 		needle.get(this.website, () => {
-			let responseTime = new Date() - start;
-			console.log('Response Time:', responseTime, 'ms \n------\n');
-		});
+			let speed = new Date() - start;
+			let time = new Date(Date.now()).toString();
+			let output = `Response Time: ${speed}ms\nWebsite: ${this.website}\nTime: ${time}\nStatus: ${status}\nMessage: ${message}`;
 
-		console.log(output);
-		this.writeLog(output);
+			console.log(output, '\n-----\n');
+			this.writeLog(output);
+		});
 	},
 
 	writeLog: function (output) {
