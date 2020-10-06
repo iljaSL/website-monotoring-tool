@@ -9,7 +9,6 @@
 	"author": "ismelich",
 	"license": "ISC",
 	"dependencies": {
-		"get-server-response-time": "^1.1.5",
 		"needle": "^2.5.2"
 	},
 	"devDependencies": {}
