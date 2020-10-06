@@ -10,7 +10,6 @@
 	"author": "ismelich",
 	"license": "ISC",
 	"dependencies": {
-		"express": "^4.17.1",
 		"get-server-response-time": "^1.1.5",
 		"needle": "^2.5.2"
 	},

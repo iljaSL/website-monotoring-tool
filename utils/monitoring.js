@@ -2,6 +2,7 @@ const needle = require('needle');
 const fs = require('fs');
 const getServerResponseTime = require('get-server-response-time');
 const config = require('../config/config');
+const http = require('http');
 
 function Monitor(options) {
 	this.website = '';
@@ -31,9 +32,9 @@ Monitor.prototype = {
 		try {
 			needle.get(that.website, function (error, response) {
 				if (!error && response.statusCode === 200) {
-					that.ifSuccess(response.statusCode, response.statusMessage);
+					that.isSuccess(response.statusCode, response.statusMessage);
 				} else if (!error) {
-					that.ifOtherStatusCode(response.statusCode, response.statusMessage);
+					that.isOtherStatusCode(response.statusCode, response.statusMessage);
 				} else {
 					console.log(
 						`\nloading error: something is wrong with the following url -> ${that.website}\n \n-----`
@@ -45,20 +46,23 @@ Monitor.prototype = {
 		}
 	},
 
-	ifSuccess: function (status, message) {
+	isSuccess: function (status, message) {
 		this.printOutput(status, message);
 	},
 
-	ifOtherStatusCode: function (status, message) {
+	isOtherStatusCode: function (status, message) {
 		this.printOutput(status, message);
 	},
 
 	printOutput: async function (status, message) {
+		const responseTime = await getServerResponseTime(this.website, {
+			timeout: 10000,
+			responseInCaseError: true,
+		}).catch((error) => console.error('ERROR', error));
 		const that = this;
-		const responseTime = await getServerResponseTime(this.website);
 
 		let time = new Date(Date.now()).toString();
-		let output = `\nResponse Time: ${responseTime}ms \nWebsite: ${that.website} \nTime: ${time} \nStatus: ${status} \nMessage: ${message} \n`;
+		let output = `\nResponse Time:${responseTime} ms \nWebsite: ${that.website} \nTime: ${time} \nStatus: ${status} \nMessage: ${message} \n`;
 
 		console.log(output, '\n-----');
 		this.writeLog(output);

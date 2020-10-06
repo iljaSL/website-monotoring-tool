@@ -2,11 +2,11 @@ const timeout = 2000;
 
 const websites = [
 	{
-		url: 'http://htat.us/308',
+		url: 'https://httpstat.us/202',
 	},
-	{
-		url: 'http://www.foobar.com/login',
-	},
+	// {
+	// 	url: 'http://www.foobar.com/login',
+	// },
 ];
 
 module.exports = { timeout, websites };
