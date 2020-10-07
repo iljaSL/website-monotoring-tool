@@ -45,3 +45,10 @@ In this sections, I list the improvements I had in mind for this program, but co
 * Creating a middleware for the display of error messages.
 * Separating the writing of the errors in a specific logger file.
 * Creating a automated tester with the help of jest.
+
+## Software Design
+
+I decided to use JavaScript's prototypes for my program, because they use less memory.
+It might be not a big deal for my small program yet, but I tried to think of the big picture, when the program needs to work with bigger loads of data and request. In that case the program would highly benefit from the prototypes.
+This memory will be saved by creating a constructer which is in my case 'Monitor'. For this constructer, I created a prototype, which is the 'blue print' for any new instances, so it does not create all the time new memory for each call, which it would do in a normal functional.
+Furthermore, I used closures in my program to remember the environment in which it was created, so I could have access to the outer functions variable and parameters, which is a big help for the asynchronous setInterval function inside the Monitor prototype.
