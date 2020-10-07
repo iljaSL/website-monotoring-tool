@@ -1,6 +1,6 @@
 ## About The Project
 
-This is a web site monotoring tool, which can read a list of web pages (HTTP and HTTPS) and outputs the current state of the website.
+This is a web site monitoring tool, which can read a list of web pages (HTTP and HTTPS) and outputs the current state of the website.
 It is part of the two-day long homework assignment by F-Secure.
 
 Features:
